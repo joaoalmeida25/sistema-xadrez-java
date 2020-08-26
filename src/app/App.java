@@ -4,11 +4,11 @@ import xadrez.PartidaXadrez;
 
 public class App {
 
-	public static void main(String[] args) {
-		
-		PartidaXadrez partida = new PartidaXadrez();
-		
-		UI.mostrarTabuleiro(partida.getPecas());
-	}
+    public static void main(String[] args) {
+
+        PartidaXadrez partida = new PartidaXadrez();
+
+        UI.mostrarTabuleiro(partida.getPecas());
+    }
 
 }
