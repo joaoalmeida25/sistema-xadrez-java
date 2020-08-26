@@ -1,5 +1,7 @@
 package tabuleiro;
 
+import exception.TabuleiroException;
+
 public class Tabuleiro {
 
     private int linhas;
@@ -26,7 +28,7 @@ public class Tabuleiro {
         return pecas[posicao.getLinha()][posicao.getColuna()];
     }
 
-    public void posicaoPeca(Peca peca, Posicao posicao) {
+    public void colocarPeca(Peca peca, Posicao posicao) {
         if (!existePosicao(posicao)) {
             throw new TabuleiroException("Já existe uma peça na posição: " + posicao);
         }
