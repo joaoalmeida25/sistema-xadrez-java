@@ -5,7 +5,6 @@ import xadrez.PartidaXadrez;
 import xadrez.PecaXadrez;
 import xadrez.PosicaoXadrez;
 
-import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -30,10 +29,7 @@ public class App {
 
                 PecaXadrez pecaCapturada = partida.executarMovimentoXadrez(origem, destino);
                 System.out.print("Peça " + pecaCapturada + " movida para " + destino);
-            } catch (XadrezException e) {
-                System.out.println(e.getMessage());
-                sc.nextLine();
-            } catch (InputMismatchException e) {
+            } catch (XadrezException | InputMismatchException e) {
                 System.out.println(e.getMessage());
                 sc.nextLine();
             }

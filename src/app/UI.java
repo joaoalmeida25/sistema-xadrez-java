@@ -69,18 +69,17 @@ public class UI {
             for (int i = 0; i < 100; i++) {
                 System.out.println();
             }
-            limparConsoleLinux();
-            limparConsoleWindows();
+            limparConsole(System.getProperty("os.name"));
         } catch (IOException e) {
             System.out.print("Erro ao limpar console: " + e.getMessage());
         }
     }
 
-    private static void limparConsoleLinux() throws IOException {
-        Runtime.getRuntime().exec("clear");
-    }
-
-    private static void limparConsoleWindows() throws IOException {
-        Runtime.getRuntime().exec("cls");
+    private static void limparConsole(String sistema) throws IOException {
+        if (sistema.equals("Linux")) {
+            Runtime.getRuntime().exec("clear");
+        } else {
+            Runtime.getRuntime().exec("cls");
+        }
     }
 }
