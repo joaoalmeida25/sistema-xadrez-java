@@ -8,7 +8,7 @@ public class App {
 
         PartidaXadrez partida = new PartidaXadrez();
 
-        UI.mostrarTabuleiro(partida.getPecas());
+        UI.imprimirTabuleiro(partida.getPecas());
     }
 
 }
