@@ -4,6 +4,7 @@ import xadrez.Cor;
 import xadrez.PecaXadrez;
 import xadrez.PosicaoXadrez;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -61,5 +62,25 @@ public class UI {
             }
         }
         System.out.print(" ");
+    }
+
+    public static void limparConsole() {
+        try {
+            for (int i = 0; i < 100; i++) {
+                System.out.println();
+            }
+            limparConsoleLinux();
+            limparConsoleWindows();
+        } catch (IOException e) {
+            System.out.print("Erro ao limpar console: " + e.getMessage());
+        }
+    }
+
+    private static void limparConsoleLinux() throws IOException {
+        Runtime.getRuntime().exec("clear");
+    }
+
+    private static void limparConsoleWindows() throws IOException {
+        Runtime.getRuntime().exec("cls");
     }
 }
