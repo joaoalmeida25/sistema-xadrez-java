@@ -17,7 +17,7 @@ public class PosicaoXadrez {
         this.coluna = coluna;
     }
 
-    protected Posicao toPosicao() {
+    protected Posicao obterPosicao() {
         return new Posicao(8 - linha, coluna - 'a');
     }
 

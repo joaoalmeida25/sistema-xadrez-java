@@ -1,8 +1,13 @@
 package xadrez;
 
+import exception.XadrezException;
+import tabuleiro.Peca;
+import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 import xadrez.pecas.Rei;
 import xadrez.pecas.Torre;
+
+import java.util.Objects;
 
 public class PartidaXadrez {
 
@@ -23,8 +28,31 @@ public class PartidaXadrez {
         return matriz;
     }
 
+    public PecaXadrez executarMovimentoXadrez(PosicaoXadrez posicaoOrigem, PosicaoXadrez posicaoDestino) {
+        Posicao origem = posicaoOrigem.obterPosicao();
+        Posicao destino = posicaoDestino.obterPosicao();
+
+        validarPosicaoOrigem(origem);
+
+        Peca pecaCapturada = criarMovimento(origem, destino);
+        return (PecaXadrez) pecaCapturada;
+    }
+
+    private Peca criarMovimento(Posicao origem, Posicao destino) {
+        Peca peca = tabuleiro.removerPeca(origem);
+        Peca pecaCapturada = tabuleiro.removerPeca(destino);
+        tabuleiro.colocarPeca(peca, destino);
+        return pecaCapturada;
+    }
+
+    private void validarPosicaoOrigem(Posicao origem) {
+        if (!tabuleiro.existePeca(origem)) {
+            throw new XadrezException("Não existe peça na posição " + origem.toString());
+        }
+    }
+
     private void colocarNovaPeca(char coluna, int linha, PecaXadrez peca) {
-        tabuleiro.colocarPeca(peca, new PosicaoXadrez(linha, coluna).toPosicao());
+        tabuleiro.colocarPeca(peca, new PosicaoXadrez(linha, coluna).obterPosicao());
     }
 
     public void configInicial() {

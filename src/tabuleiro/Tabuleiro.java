@@ -2,6 +2,8 @@ package tabuleiro;
 
 import exception.TabuleiroException;
 
+import java.util.Objects;
+
 public class Tabuleiro {
 
     private int linhas;
@@ -34,6 +36,19 @@ public class Tabuleiro {
         }
         pecas[posicao.getLinha()][posicao.getColuna()] = peca;
         peca.posicao = posicao;
+    }
+
+    public Peca removerPeca(Posicao posicao) {
+        if (!existePosicao(posicao)) {
+            throw new TabuleiroException("Não existe esta posição no tabuleiro!");
+        }
+        if (Objects.isNull(peca(posicao))) {
+            return null;
+        }
+        Peca pecaAux = peca(posicao);
+        pecaAux.posicao = null;
+        pecas[posicao.getLinha()][posicao.getColuna()] = null;
+        return pecaAux;
     }
 
     private boolean existePosicao(int linha, int coluna) {
