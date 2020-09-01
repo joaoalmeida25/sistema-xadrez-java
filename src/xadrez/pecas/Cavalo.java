@@ -14,4 +14,9 @@ public class Cavalo extends PecaXadrez {
 	public String toString() {
 		return "♘";
 	}
+
+	@Override
+	public boolean[][] possiveisMovimentos() {
+		return new boolean[0][];
+	}
 }
