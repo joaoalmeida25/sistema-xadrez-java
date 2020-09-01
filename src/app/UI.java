@@ -6,6 +6,7 @@ import xadrez.PosicaoXadrez;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class UI {
@@ -44,16 +45,30 @@ public class UI {
         for (int i = 0; i < pecas.length; i++) {
             System.out.print((8 - i) + " ");
             for (int j = 0; j < pecas.length; j++) {
-                imprimirPeca(pecas[i][j]);
+                imprimirPeca(pecas[i][j], false);
             }
             System.out.println();
         }
         System.out.println("  a b c d e f g h");
     }
 
-    private static void imprimirPeca(PecaXadrez peca) {
-        if (peca == null) {
-            System.out.print("-");
+    public static void imprimirTabuleiro(PecaXadrez[][] pecas, boolean[][] possiveisMovimentos) {
+        for (int i = 0; i < pecas.length; i++) {
+            System.out.print((8 - i) + " ");
+            for (int j = 0; j < pecas.length; j++) {
+                imprimirPeca(pecas[i][j], possiveisMovimentos[i][j]);
+            }
+            System.out.println();
+        }
+        System.out.println("  a b c d e f g h");
+    }
+
+    private static void imprimirPeca(PecaXadrez peca, boolean mostrarMovimento) {
+        if (mostrarMovimento) {
+            System.out.print(ANSI_PURPLE_BACKGROUND);
+        }
+        if (Objects.isNull(peca)) {
+            System.out.print("-" + ANSI_RESET);
         } else {
             if (peca.getCor() == Cor.BRANCA) {
                 System.out.print(ANSI_WHITE + peca + ANSI_RESET);
