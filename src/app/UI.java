@@ -1,6 +1,7 @@
 package app;
 
-import xadrez.Cor;
+import constantes.Cor;
+import xadrez.PartidaXadrez;
 import xadrez.PecaXadrez;
 import xadrez.PosicaoXadrez;
 
@@ -41,6 +42,13 @@ public class UI {
         }
     }
 
+    public static void imprimirPartida(PartidaXadrez partidaXadrez) {
+        imprimirTabuleiro(partidaXadrez.getPecas());
+        System.out.println();
+        System.out.println("Turno: " + partidaXadrez.getTurno());
+        System.out.println("Esperando o jogador da cor: " + partidaXadrez.getJogadorAtual());
+    }
+
     public static void imprimirTabuleiro(PecaXadrez[][] pecas) {
         for (int i = 0; i < pecas.length; i++) {
             System.out.print((8 - i) + " ");
@@ -71,9 +79,9 @@ public class UI {
             System.out.print("-" + ANSI_RESET);
         } else {
             if (peca.getCor() == Cor.BRANCA) {
-                System.out.print(ANSI_WHITE + peca + ANSI_RESET);
+                System.out.print(ANSI_PURPLE + peca + ANSI_RESET);
             } else {
-                System.out.print(ANSI_YELLOW + peca + ANSI_RESET);
+                System.out.print(ANSI_WHITE + peca + ANSI_RESET);
             }
         }
         System.out.print(" ");

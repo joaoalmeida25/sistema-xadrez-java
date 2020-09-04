@@ -2,7 +2,7 @@ package xadrez.pecas;
 
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
-import xadrez.Cor;
+import constantes.Cor;
 import xadrez.PecaXadrez;
 
 public class Torre extends PecaXadrez {

@@ -1,5 +1,6 @@
 package xadrez;
 
+import constantes.Cor;
 import tabuleiro.Peca;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
