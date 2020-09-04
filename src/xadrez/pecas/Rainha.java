@@ -1,5 +1,6 @@
 package xadrez.pecas;
 
+import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 import xadrez.Cor;
 import xadrez.PecaXadrez;
@@ -17,6 +18,10 @@ public class Rainha extends PecaXadrez {
 
 	@Override
 	public boolean[][] possiveisMovimentos() {
-		return new boolean[0][];
+		boolean[][] mat = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
+
+		Posicao p = new Posicao(0, 0);
+
+		return mat;
 	}
 }
