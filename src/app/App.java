@@ -30,8 +30,7 @@ public class App {
                 System.out.print("Peça de destino: ");
                 PosicaoXadrez destino = UI.lerPosicaoXadrez(sc);
 
-                PecaXadrez pecaCapturada = partida.executarMovimentoXadrez(origem, destino);
-                System.out.print("Peça " + pecaCapturada + " movida para " + destino);
+                partida.executarMovimentoXadrez(origem, destino);
             } catch (XadrezException | InputMismatchException e) {
                 System.out.println(e.getMessage());
                 sc.nextLine();
