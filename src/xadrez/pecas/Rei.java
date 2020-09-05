@@ -30,19 +30,12 @@ public class Rei extends PecaXadrez {
         Posicao p = new Posicao(0, 0);
 
         norte(mat, p);
-
         sul(mat, p);
-
         oeste(mat, p);
-
         leste(mat, p);
-
         noroeste(mat, p);
-
         nordeste(mat, p);
-
         sudoeste(mat, p);
-
         sudeste(mat, p);
 
         return mat;

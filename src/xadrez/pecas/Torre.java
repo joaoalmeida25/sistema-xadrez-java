@@ -22,7 +22,15 @@ public class Torre extends PecaXadrez {
 
         Posicao p = new Posicao(0, 0);
 
-        // acima
+        norte(mat, p);
+        sul(mat, p);
+        oeste(mat, p);
+        leste(mat, p);
+
+        return mat;
+    }
+
+    private void norte(boolean[][] mat, Posicao p) {
         p.setValores(posicao.getLinha() - 1, posicao.getColuna());
         while (getTabuleiro().existePosicao(p) && !getTabuleiro().existePeca(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
@@ -31,28 +39,9 @@ public class Torre extends PecaXadrez {
         if (getTabuleiro().existePosicao(p) && existePecaOponente(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
         }
+    }
 
-        // esquerda
-        p.setValores(posicao.getLinha(), posicao.getColuna() - 1);
-        while (getTabuleiro().existePosicao(p) && !getTabuleiro().existePeca(p)) {
-            mat[p.getLinha()][p.getColuna()] = true;
-            p.setColuna(p.getColuna() - 1);
-        }
-        if (getTabuleiro().existePosicao(p) && existePecaOponente(p)) {
-            mat[p.getLinha()][p.getColuna()] = true;
-        }
-
-        // direita
-        p.setValores(posicao.getLinha(), posicao.getColuna() + 1);
-        while (getTabuleiro().existePosicao(p) && !getTabuleiro().existePeca(p)) {
-            mat[p.getLinha()][p.getColuna()] = true;
-            p.setColuna(p.getColuna() + 1);
-        }
-        if (getTabuleiro().existePosicao(p) && existePecaOponente(p)) {
-            mat[p.getLinha()][p.getColuna()] = true;
-        }
-
-        // embaixo
+    private void sul(boolean[][] mat, Posicao p) {
         p.setValores(posicao.getLinha() + 1, posicao.getColuna());
         while (getTabuleiro().existePosicao(p) && !getTabuleiro().existePeca(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
@@ -61,7 +50,27 @@ public class Torre extends PecaXadrez {
         if (getTabuleiro().existePosicao(p) && existePecaOponente(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
         }
+    }
 
-        return mat;
+    private void oeste(boolean[][] mat, Posicao p) {
+        p.setValores(posicao.getLinha(), posicao.getColuna() - 1);
+        while (getTabuleiro().existePosicao(p) && !getTabuleiro().existePeca(p)) {
+            mat[p.getLinha()][p.getColuna()] = true;
+            p.setColuna(p.getColuna() - 1);
+        }
+        if (getTabuleiro().existePosicao(p) && existePecaOponente(p)) {
+            mat[p.getLinha()][p.getColuna()] = true;
+        }
+    }
+
+    private void leste(boolean[][] mat, Posicao p) {
+        p.setValores(posicao.getLinha(), posicao.getColuna() + 1);
+        while (getTabuleiro().existePosicao(p) && !getTabuleiro().existePeca(p)) {
+            mat[p.getLinha()][p.getColuna()] = true;
+            p.setColuna(p.getColuna() + 1);
+        }
+        if (getTabuleiro().existePosicao(p) && existePecaOponente(p)) {
+            mat[p.getLinha()][p.getColuna()] = true;
+        }
     }
 }
