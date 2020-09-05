@@ -1,21 +1,14 @@
 package xadrez.pecas;
 
+import constantes.Cor;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
-import constantes.Cor;
 import xadrez.PecaXadrez;
-
-import java.util.Objects;
 
 public class Rei extends PecaXadrez {
 
     public Rei(Tabuleiro tabuleiro, Cor cor) {
         super(tabuleiro, cor);
-    }
-
-    private boolean podeMover(Posicao posicao) {
-        PecaXadrez p = (PecaXadrez) getTabuleiro().peca(posicao);
-        return Objects.isNull(p) || !p.getCor().equals(getCor());
     }
 
     @Override
