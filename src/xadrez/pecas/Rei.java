@@ -29,54 +29,79 @@ public class Rei extends PecaXadrez {
 
         Posicao p = new Posicao(0, 0);
 
-        // acima
+        norte(mat, p);
+
+        sul(mat, p);
+
+        oeste(mat, p);
+
+        leste(mat, p);
+
+        noroeste(mat, p);
+
+        nordeste(mat, p);
+
+        sudoeste(mat, p);
+
+        sudeste(mat, p);
+
+        return mat;
+    }
+
+    private void norte(boolean[][] mat, Posicao p) {
         p.setValores(posicao.getLinha() - 1, posicao.getColuna());
         if (getTabuleiro().existePosicao(p) && podeMover(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
         }
+    }
 
-        // embaixo
+    private void sul(boolean[][] mat, Posicao p) {
         p.setValores(posicao.getLinha() + 1, posicao.getColuna());
         if (getTabuleiro().existePosicao(p) && podeMover(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
         }
+    }
 
-        // esquerda
+    private void oeste(boolean[][] mat, Posicao p) {
         p.setValores(posicao.getLinha(), posicao.getColuna() - 1);
         if (getTabuleiro().existePosicao(p) && podeMover(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
         }
+    }
 
-        // direita
+    private void leste(boolean[][] mat, Posicao p) {
         p.setValores(posicao.getLinha(), posicao.getColuna() + 1);
         if (getTabuleiro().existePosicao(p) && podeMover(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
         }
 
-        // noroeste
+    }
+
+    private void noroeste(boolean[][] mat, Posicao p) {
         p.setValores(posicao.getLinha() - 1, posicao.getColuna() - 1);
         if (getTabuleiro().existePosicao(p) && podeMover(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
         }
+    }
 
-        // nordeste
+    private void nordeste(boolean[][] mat, Posicao p) {
         p.setValores(posicao.getLinha() - 1, posicao.getColuna() + 1);
         if (getTabuleiro().existePosicao(p) && podeMover(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
         }
+    }
 
-        // sudoeste
+    private void sudoeste(boolean[][] mat, Posicao p) {
         p.setValores(posicao.getLinha() + 1, posicao.getColuna() - 1);
         if (getTabuleiro().existePosicao(p) && podeMover(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
         }
+    }
 
-        // sudestes
+    private void sudeste(boolean[][] mat, Posicao p) {
         p.setValores(posicao.getLinha() + 1, posicao.getColuna() + 1);
         if (getTabuleiro().existePosicao(p) && podeMover(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
         }
-
-        return mat;
     }
 }
