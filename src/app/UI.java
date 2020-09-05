@@ -86,7 +86,7 @@ public class UI {
         if (Objects.isNull(peca)) {
             System.out.print("-" + ANSI_RESET);
         } else {
-            if (peca.getCor() == Cor.BRANCA) {
+            if (peca.getCor() == Cor.BRANCO) {
                 System.out.print(ANSI_WHITE + peca + ANSI_RESET);
             } else {
                 System.out.print(ANSI_PURPLE + peca + ANSI_RESET);
@@ -99,12 +99,12 @@ public class UI {
         System.out.println("Peças capturadas");
         System.out.print("Brancas: ");
         System.out.print(ANSI_WHITE);
-        System.out.println(Arrays.toString(pecas.stream().filter(x -> x.getCor().equals(Cor.BRANCA)).toArray()));
+        System.out.println(Arrays.toString(pecas.stream().filter(x -> x.getCor().equals(Cor.BRANCO)).toArray()));
         System.out.print(ANSI_RESET);
 
         System.out.print("Pretas: ");
         System.out.print(ANSI_PURPLE);
-        System.out.println(Arrays.toString(pecas.stream().filter(x -> x.getCor().equals(Cor.PRETA)).toArray()));
+        System.out.println(Arrays.toString(pecas.stream().filter(x -> x.getCor().equals(Cor.PRETO)).toArray()));
         System.out.print(ANSI_RESET);
     }
 

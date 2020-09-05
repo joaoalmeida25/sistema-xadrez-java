@@ -22,7 +22,7 @@ public class Peao extends PecaXadrez {
 
         Posicao p = new Posicao(0, 0);
 
-        if (Cor.BRANCA.equals(getCor())) {
+        if (Cor.BRANCO.equals(getCor())) {
             direcoesPossiveisCorBranca(mat, p);
         } else {
             direcoesPossiveisCorPreta(mat, p);
