@@ -2,10 +2,10 @@ package app;
 
 import exception.XadrezException;
 import xadrez.PartidaXadrez;
-import xadrez.PecaXadrez;
 import xadrez.PosicaoXadrez;
 
-import java.util.*;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class App {
 
@@ -14,7 +14,7 @@ public class App {
         Scanner sc = new Scanner(System.in);
         PartidaXadrez partida = new PartidaXadrez();
 
-        while (true) {
+        while (!partida.getXequeMate()) {
             try {
                 UI.limparConsole();
                 UI.imprimirPartida(partida, partida.getPecasCapturadas());
@@ -36,6 +36,8 @@ public class App {
                 sc.nextLine();
             }
         }
+        UI.limparConsole();
+        UI.imprimirPartida(partida, partida.getPecasCapturadas());
     }
 
 }
