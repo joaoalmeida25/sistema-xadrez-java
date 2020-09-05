@@ -10,6 +10,7 @@ import java.util.Objects;
 public abstract class PecaXadrez extends Peca {
 
     private final Cor cor;
+    private int contMovimentos;
 
     public PecaXadrez(Tabuleiro tabuleiro, Cor cor) {
         super(tabuleiro);
@@ -21,11 +22,23 @@ public abstract class PecaXadrez extends Peca {
         return Objects.nonNull(p) && !p.getCor().equals(cor);
     }
 
+    public void incrementarContMovimentos() {
+        contMovimentos++;
+    }
+
+    public void decrementarContMovimentos() {
+        contMovimentos--;
+    }
+
     public PosicaoXadrez getPosicaoXadrez() {
         return PosicaoXadrez.fromPosicao(posicao);
     }
 
     public Cor getCor() {
         return cor;
+    }
+
+    public int getContMovimentos() {
+        return contMovimentos;
     }
 }

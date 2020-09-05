@@ -98,7 +98,8 @@ public class PartidaXadrez {
     }
 
     private Peca criarMovimento(Posicao origem, Posicao destino) {
-        Peca peca = tabuleiro.removerPeca(origem);
+        PecaXadrez peca = (PecaXadrez) tabuleiro.removerPeca(origem);
+        peca.incrementarContMovimentos();
         Peca pecaCapturada = tabuleiro.removerPeca(destino);
 
         tabuleiro.colocarPeca(peca, destino);
@@ -112,7 +113,8 @@ public class PartidaXadrez {
     }
 
     private void desfazerMovimento(Posicao origem, Posicao destino, Peca pecaCapturada) {
-        Peca peca = tabuleiro.removerPeca(destino);
+        PecaXadrez peca = (PecaXadrez) tabuleiro.removerPeca(destino);
+        peca.decrementarContMovimentos();
         tabuleiro.colocarPeca(peca, origem);
 
         if (Objects.nonNull(pecaCapturada)) {
@@ -210,6 +212,15 @@ public class PartidaXadrez {
         colocarNovaPeca('f', 8, new Bispo(tabuleiro, Cor.PRETA));
         colocarNovaPeca('g', 8, new Cavalo(tabuleiro, Cor.PRETA));
         colocarNovaPeca('h', 8, new Torre(tabuleiro, Cor.PRETA));
+
+//        colocarNovaPeca('a', 2, new Peao(tabuleiro, Cor.BRANCA));
+//        colocarNovaPeca('b', 2, new Peao(tabuleiro, Cor.BRANCA));
+//        colocarNovaPeca('c', 2, new Peao(tabuleiro, Cor.BRANCA));
+//        colocarNovaPeca('d', 2, new Peao(tabuleiro, Cor.BRANCA));
+//        colocarNovaPeca('e', 2, new Peao(tabuleiro, Cor.BRANCA));
+//        colocarNovaPeca('f', 2, new Peao(tabuleiro, Cor.BRANCA));
+//        colocarNovaPeca('g', 2, new Peao(tabuleiro, Cor.BRANCA));
+//        colocarNovaPeca('h', 2, new Peao(tabuleiro, Cor.BRANCA));
 
     }
 
