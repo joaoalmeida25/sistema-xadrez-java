@@ -5,8 +5,8 @@ import tabuleiro.Posicao;
 
 public class PosicaoXadrez {
 
-    private int linha;
-    private char coluna;
+    private final int linha;
+    private final char coluna;
 
     public PosicaoXadrez(int linha, char coluna) {
         if (coluna < 'a' || coluna > 'h' || linha < 1 || linha > 8) {

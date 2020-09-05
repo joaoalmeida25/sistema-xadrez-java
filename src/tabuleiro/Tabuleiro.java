@@ -6,9 +6,9 @@ import java.util.Objects;
 
 public class Tabuleiro {
 
-    private int linhas;
-    private int colunas;
-    private Peca[][] pecas;
+    private final int linhas;
+    private final int colunas;
+    private final Peca[][] pecas;
 
     public Tabuleiro(int linhas, int colunas) {
         if (linhas < 0 || colunas < 0) {
@@ -63,7 +63,7 @@ public class Tabuleiro {
         if (!existePosicao(posicao.getLinha(), posicao.getColuna())) {
             throw new TabuleiroException("Não existe esta posição no tabuleiro!");
         }
-        return peca(posicao) != null;
+        return Objects.nonNull(peca(posicao));
     }
 
     public int getLinhas() {
