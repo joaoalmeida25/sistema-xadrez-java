@@ -3,17 +3,23 @@ package xadrez.pecas;
 import constantes.Cor;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
+import xadrez.PartidaXadrez;
 import xadrez.PecaXadrez;
+
+import java.util.Objects;
 
 public class Rei extends PecaXadrez {
 
-    public Rei(Tabuleiro tabuleiro, Cor cor) {
+    private PartidaXadrez partidaXadrez;
+
+    public Rei(Tabuleiro tabuleiro, Cor cor, PartidaXadrez partidaXadrez) {
         super(tabuleiro, cor);
+        this.partidaXadrez = partidaXadrez;
     }
 
-    @Override
-    public String toString() {
-        return "♔";
+    private boolean testarRoqueTorre(Posicao posicao) {
+        PecaXadrez p = (PecaXadrez) getTabuleiro().peca(posicao);
+        return Objects.nonNull(p) && p instanceof Torre && getCor().equals(p.getCor()) && p.getContMovimentos() == 0;
     }
 
     @Override
@@ -31,7 +37,37 @@ public class Rei extends PecaXadrez {
         sudoeste(mat, p);
         sudeste(mat, p);
 
+        if (getContMovimentos() == 0 && !partidaXadrez.getXeque()) {
+            jogadaEspecialRoquePequeno(mat);
+            jogadaEspecialRoqueGrande(mat);
+        }
+
         return mat;
+    }
+
+
+    private void jogadaEspecialRoquePequeno(boolean[][] mat) {
+        Posicao pos = new Posicao(posicao.getLinha(), posicao.getColuna() + 3);
+        if (testarRoqueTorre(pos)) {
+            Posicao p1 = new Posicao(posicao.getLinha(), posicao.getColuna() + 1);
+            Posicao p2 = new Posicao(posicao.getLinha(), posicao.getColuna() + 2);
+            if (Objects.isNull(getTabuleiro().peca(p1)) && Objects.isNull(getTabuleiro().peca(p2))) {
+                mat[posicao.getLinha()][posicao.getColuna() + 2] = true;
+            }
+        }
+    }
+
+    private void jogadaEspecialRoqueGrande(boolean[][] mat) {
+        Posicao pos = new Posicao(posicao.getLinha(), posicao.getColuna() - 4);
+        if (testarRoqueTorre(pos)) {
+            Posicao p1 = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
+            Posicao p2 = new Posicao(posicao.getLinha(), posicao.getColuna() - 2);
+            Posicao p3 = new Posicao(posicao.getLinha(), posicao.getColuna() - 3);
+            if (Objects.isNull(getTabuleiro().peca(p1)) && Objects.isNull(getTabuleiro().peca(p2))
+                    && Objects.isNull(getTabuleiro().peca(p3))) {
+                mat[posicao.getLinha()][posicao.getColuna() - 2] = true;
+            }
+        }
     }
 
     private void norte(boolean[][] mat, Posicao p) {
@@ -89,5 +125,10 @@ public class Rei extends PecaXadrez {
         if (getTabuleiro().existePosicao(p) && podeMover(p)) {
             mat[p.getLinha()][p.getColuna()] = true;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "♔";
     }
 }
