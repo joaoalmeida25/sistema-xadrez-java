@@ -7,13 +7,18 @@ import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 import xadrez.pecas.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class PartidaXadrez {
 
     private int turno;
     private Cor jogadorAtual;
-    private Tabuleiro tabuleiro;
+    private final Tabuleiro tabuleiro;
+
+    private final List<Peca> pecasNoTabuleiro = new ArrayList<>();
+    private final List<PecaXadrez> pecasCapturadas = new ArrayList<>();
 
     public PartidaXadrez() {
         tabuleiro = new Tabuleiro(8, 8);
@@ -57,7 +62,7 @@ public class PartidaXadrez {
         if (!tabuleiro.existePeca(origem)) {
             throw new XadrezException("Não existe peça na posição " + origem.toString());
         }
-        if (Objects.equals(jogadorAtual, ((PecaXadrez) tabuleiro.peca(origem)).getCor())) {
+        if (!Objects.equals(jogadorAtual, ((PecaXadrez) tabuleiro.peca(origem)).getCor())) {
             throw new XadrezException("A peça selecionada não é sua!");
         }
         if (!tabuleiro.peca(origem).existePossivelMovimento()) {
@@ -83,12 +88,18 @@ public class PartidaXadrez {
 
         tabuleiro.colocarPeca(peca, destino);
 
+        if (Objects.nonNull(pecaCapturada)) {
+            pecasNoTabuleiro.remove(pecaCapturada);
+            pecasCapturadas.add((PecaXadrez) pecaCapturada);
+        }
+
         return pecaCapturada;
     }
 
 
     private void colocarNovaPeca(char coluna, int linha, PecaXadrez peca) {
         tabuleiro.colocarPeca(peca, new PosicaoXadrez(linha, coluna).obterPosicao());
+        pecasNoTabuleiro.add(peca);
     }
 
     public void configInicial() {
@@ -120,6 +131,14 @@ public class PartidaXadrez {
         colocarNovaPeca('h', 8, new Torre(tabuleiro, Cor.PRETA));
 
 //
+    }
+
+    public List<Peca> getPecasNoTabuleiro() {
+        return pecasNoTabuleiro;
+    }
+
+    public List<PecaXadrez> getPecasCapturadas() {
+        return pecasCapturadas;
     }
 
     public int getTurno() {

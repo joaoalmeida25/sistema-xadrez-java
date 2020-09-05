@@ -6,9 +6,7 @@ import xadrez.PecaXadrez;
 import xadrez.PosicaoXadrez;
 
 import java.io.IOException;
-import java.util.InputMismatchException;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class UI {
 
@@ -42,8 +40,10 @@ public class UI {
         }
     }
 
-    public static void imprimirPartida(PartidaXadrez partidaXadrez) {
+    public static void imprimirPartida(PartidaXadrez partidaXadrez, List<PecaXadrez> pecasCapturadas) {
         imprimirTabuleiro(partidaXadrez.getPecas());
+        System.out.println();
+        imprimirPecasCapturadas(pecasCapturadas);
         System.out.println();
         System.out.println("Turno: " + partidaXadrez.getTurno());
         System.out.println("Esperando o jogador da cor: " + partidaXadrez.getJogadorAtual());
@@ -73,18 +73,31 @@ public class UI {
 
     private static void imprimirPeca(PecaXadrez peca, boolean mostrarMovimento) {
         if (mostrarMovimento) {
-            System.out.print(ANSI_PURPLE_BACKGROUND);
+            System.out.print(ANSI_CYAN_BACKGROUND);
         }
         if (Objects.isNull(peca)) {
             System.out.print("-" + ANSI_RESET);
         } else {
             if (peca.getCor() == Cor.BRANCA) {
-                System.out.print(ANSI_PURPLE + peca + ANSI_RESET);
-            } else {
                 System.out.print(ANSI_WHITE + peca + ANSI_RESET);
+            } else {
+                System.out.print(ANSI_PURPLE + peca + ANSI_RESET);
             }
         }
         System.out.print(" ");
+    }
+
+    public static void imprimirPecasCapturadas(List<PecaXadrez> pecas) {
+        System.out.println("Peças capturadas");
+        System.out.print("Brancas: ");
+        System.out.print(ANSI_WHITE);
+        System.out.println(Arrays.toString(pecas.stream().filter(x -> x.getCor().equals(Cor.BRANCA)).toArray()));
+        System.out.print(ANSI_RESET);
+
+        System.out.print("Pretas: ");
+        System.out.print(ANSI_PURPLE);
+        System.out.println(Arrays.toString(pecas.stream().filter(x -> x.getCor().equals(Cor.PRETA)).toArray()));
+        System.out.print(ANSI_RESET);
     }
 
     public static void limparConsole() {

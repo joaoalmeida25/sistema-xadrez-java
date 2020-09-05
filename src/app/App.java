@@ -5,8 +5,7 @@ import xadrez.PartidaXadrez;
 import xadrez.PecaXadrez;
 import xadrez.PosicaoXadrez;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class App {
 
@@ -18,7 +17,7 @@ public class App {
         while (true) {
             try {
                 UI.limparConsole();
-                UI.imprimirPartida(partida);
+                UI.imprimirPartida(partida, partida.getPecasCapturadas());
                 System.out.println();
                 System.out.print("Peça de origem: ");
                 PosicaoXadrez origem = UI.lerPosicaoXadrez(sc);
